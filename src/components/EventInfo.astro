@@ -1,0 +1,103 @@
+---
+const infoItems = [
+  {
+    icon: 'calendar',
+    title: 'Fecha',
+    value: '1 Agosto 2026',
+    subtext: 'Marca el día',
+    accent: 'yellow'
+  },
+  {
+    icon: 'location',
+    title: 'Lugar',
+    value: 'Caleta de Fuste',
+    subtext: 'Fuerteventura',
+    accent: 'red'
+  },
+  {
+    icon: 'bolt',
+    title: 'Distancia',
+    value: '6 KM',
+    subtext: 'De puro infierno',
+    accent: 'yellow'
+  }
+];
+---
+
+<section class="py-24 px-4 relative overflow-hidden">
+  <!-- Background con efecto industrial -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black via-danger-black to-black"></div>
+  <div class="absolute inset-0 danger-stripes opacity-30"></div>
+
+  <!-- Líneas decorativas -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-danger-red to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-danger-yellow to-transparent"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <!-- Título de sección -->
+    <div class="text-center mb-16">
+      <span class="text-danger-red text-sm uppercase tracking-[0.5em] font-bold">Prepárate para</span>
+      <h2 class="font-black text-4xl md:text-5xl lg:text-6xl mt-2">
+        <span class="text-white">EL </span>
+        <span class="text-gradient">DESAFÍO</span>
+      </h2>
+    </div>
+
+    <!-- Cards de info -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {infoItems.map((item, index) => (
+        <div class="group relative">
+          <!-- Borde animado -->
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-danger-yellow to-danger-red rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-500"></div>
+
+          <div class="relative bg-black border border-gray-800 rounded-lg p-8 text-center
+                      hover:border-transparent transition-all duration-300
+                      transform hover:-translate-y-2">
+            <!-- Número de orden -->
+            <span class={`absolute -top-4 -right-4 w-10 h-10 text-black font-black text-lg flex items-center justify-center rounded-full ${item.accent === 'yellow' ? 'bg-danger-yellow' : 'bg-danger-red'}`}>
+              {index + 1}
+            </span>
+
+            <!-- Icono -->
+            <div class={`mb-6 transform group-hover:scale-110 transition-transform ${item.accent === 'yellow' ? 'text-danger-yellow' : 'text-danger-red'}`}>
+              {item.icon === 'calendar' && (
+                <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              )}
+              {item.icon === 'location' && (
+                <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              )}
+              {item.icon === 'bolt' && (
+                <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              )}
+            </div>
+
+            <!-- Label -->
+            <span class="text-gray-500 text-xs uppercase tracking-[0.3em] block mb-2">{item.title}</span>
+
+            <!-- Valor principal -->
+            <p class={`text-3xl md:text-4xl font-black mb-1 ${item.accent === 'yellow' ? 'text-danger-yellow' : 'text-danger-red'}`}>
+              {item.value}
+            </p>
+
+            <!-- Subtexto -->
+            <span class="text-gray-600 text-sm">{item.subtext}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mensaje motivacional -->
+    <div class="text-center mt-16">
+      <p class="text-gray-500 text-lg italic">
+        "No es solo una carrera, es una <span class="text-danger-red font-bold">prueba de supervivencia</span>"
+      </p>
+    </div>
+  </div>
+</section>

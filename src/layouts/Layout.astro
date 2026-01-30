@@ -1,0 +1,111 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "OCR Danger Extreme - Carrera de obstáculos extrema. 1 de Agosto 2026, Caleta de Fuste, Fuerteventura. 6km de pura adrenalina."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.jpg', Astro.site);
+
+// Structured Data for Event
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": "OCR Danger Extreme 2026",
+  "description": description,
+  "startDate": "2026-08-01T09:00:00+01:00",
+  "endDate": "2026-08-01T18:00:00+01:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Caleta de Fuste",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Caleta de Fuste",
+      "addressRegion": "Antigua",
+      "addressCountry": "ES"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "OCR Danger Extreme",
+    "url": Astro.site
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://sportmaniacs.com",
+    "availability": "https://schema.org/InStock"
+  },
+  "sport": "Obstacle Course Racing",
+  "image": ogImage.toString()
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="OCR, Danger Extreme, carrera obstáculos, Caleta de Fuste, Antigua, Fuerteventura, Canarias, running, extreme, obstacle course racing, 2026" />
+    <meta name="author" content="OCR Danger Extreme" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="apple-touch-icon" href="/logo.jpg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="OCR Danger Extreme" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#E53935" />
+    <meta name="msapplication-TileColor" content="#E53935" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://sportmaniacs.com" />
+    <link rel="dns-prefetch" href="https://sportmaniacs.com" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/logo.jpg" as="image" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+  </head>
+  <body class="min-h-screen bg-danger-black text-white antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
