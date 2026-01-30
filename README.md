@@ -7,7 +7,7 @@ Landing page para la carrera de obstáculos **OCR Danger Extreme 2026** en Calet
 ## Tecnologías
 
 - **[Astro](https://astro.build)** - Framework web estático
-- **[Tailwind CSS](https://tailwindcss.com)** - Estilos utility-first
+- **[Tailwind CSS v4](https://tailwindcss.com)** - Estilos utility-first
 - **[Cloudflare Pages](https://pages.cloudflare.com)** - Hosting
 
 ## Características
@@ -56,7 +56,7 @@ bun run preview
 
 ```bash
 # Build y deploy a Cloudflare Pages
-bun run build && bunx wrangler pages deploy dist --project-name=danger-extreme
+bun run deploy
 ```
 
 ## Paleta de Colores

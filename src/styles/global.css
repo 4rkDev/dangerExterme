@@ -1,6 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-danger-yellow: #D4A017;
+  --color-danger-red: #E53935;
+  --color-danger-black: #1a1a1a;
+
+  --font-family-industrial: "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+
+  --animate-danger-shake: danger-shake 0.5s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-entrance: entrance 1s ease-out forwards;
+}
+
+@keyframes danger-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-2px) rotate(-1deg); }
+  75% { transform: translateX(2px) rotate(1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 20px #E53935); }
+  50% { filter: drop-shadow(0 0 40px #D4A017); }
+}
+
+@keyframes entrance {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
 
 @layer base {
   html {
@@ -8,7 +34,7 @@
   }
 
   body {
-    @apply bg-danger-black text-white;
+    @apply bg-danger-black text-white antialiased;
     font-family: 'Segoe UI', system-ui, sans-serif;
   }
 }
@@ -120,12 +146,6 @@
   z-index: 1;
 }
 
-/* Logo con fondo transparente usando mix-blend-mode */
-.logo-blend {
-  mix-blend-mode: multiply;
-  filter: contrast(1.1) saturate(1.2);
-}
-
 /* Logo wrapper */
 .logo-wrapper {
   display: flex;
@@ -137,25 +157,6 @@
   filter: contrast(1.2) brightness(1.1);
 }
 
-/* Efecto de scanlines retro */
-.scanlines::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.1) 2px,
-    rgba(0, 0, 0, 0.1) 4px
-  );
-  pointer-events: none;
-  z-index: 2;
-}
-
 /* Diagonal stripes for danger feel */
 .danger-stripes {
   background: repeating-linear-gradient(
@@ -165,30 +166,6 @@
     rgba(212, 160, 23, 0.1) 10px,
     rgba(212, 160, 23, 0.1) 20px
   );
-}
-
-/* Animated border */
-.animated-border {
-  position: relative;
-}
-
-.animated-border::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(90deg, #D4A017, #E53935, #D4A017);
-  background-size: 200% 100%;
-  animation: border-flow 2s linear infinite;
-  z-index: -1;
-  border-radius: inherit;
-}
-
-@keyframes border-flow {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
 }
 
 /* Pulse ring effect */
