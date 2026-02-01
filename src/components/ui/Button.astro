@@ -1,0 +1,82 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  external?: boolean;
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  external = false,
+  disabled = false,
+  class: className = '',
+} = Astro.props;
+
+const sizes = {
+  sm: 'py-2 px-4 text-sm',
+  md: 'py-4 px-8 text-xl',
+  lg: 'py-6 px-16 text-2xl',
+};
+
+const baseClasses = `
+  inline-flex items-center justify-center gap-3
+  font-black uppercase tracking-widest
+  transition-all duration-300 ease-in-out
+  border-2 rounded-none
+  focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black
+  active:scale-95
+  ${sizes[size]}
+`;
+
+const variants = {
+  primary: `
+    bg-danger-red text-white border-danger-red
+    hover:bg-transparent hover:text-danger-red
+    hover:shadow-[0_0_30px_rgba(229,57,53,0.5)]
+    focus-visible:ring-danger-red
+    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+  `,
+  secondary: `
+    bg-transparent text-danger-yellow border-danger-yellow
+    hover:bg-danger-yellow hover:text-black
+    hover:shadow-[0_0_30px_rgba(212,160,23,0.5)]
+    focus-visible:ring-danger-yellow
+    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+  `,
+};
+
+const classes = `${baseClasses} ${variants[variant]} ${className}`.trim();
+const Tag = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a 
+    href={href}
+    class={classes}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    style="clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0% 30%);"
+  >
+    <slot />
+  </a>
+) : (
+  <button 
+    class={classes}
+    disabled={disabled}
+    style="clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0% 30%);"
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  a:hover,
+  button:hover {
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 95% 100%, 0 100%, 0 0);
+  }
+</style>

@@ -37,6 +37,30 @@
     @apply bg-danger-black text-white antialiased;
     font-family: 'Segoe UI', system-ui, sans-serif;
   }
+
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Focus visible utility for keyboard navigation */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-danger-red focus-visible:ring-offset-2 focus-visible:ring-offset-danger-black;
+  }
+
+  /* Improved performance for animated elements */
+  .will-animate {
+    will-change: transform, opacity;
+    contain: layout;
+  }
 }
 
 @layer components {

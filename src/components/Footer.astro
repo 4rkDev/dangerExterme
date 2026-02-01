@@ -1,0 +1,52 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-black py-12 px-4 border-t border-gray-900 relative" role="contentinfo">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-danger-red/50 to-transparent" aria-hidden="true"></div>
+
+  <div class="max-w-4xl mx-auto">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Logo pequeño -->
+      <div class="flex items-center gap-3">
+        <img
+          src="/logo.webp"
+          alt="Logo OCR Danger Extreme"
+          width="48"
+          height="48"
+          loading="lazy"
+          decoding="async"
+          class="w-12 h-12 rounded-full opacity-80"
+          style="mix-blend-mode: screen;"
+        />
+        <div>
+          <p class="font-black text-sm">
+            <span class="text-danger-yellow">DANGER</span>
+            <span class="text-danger-red">EXTREME</span>
+          </p>
+          <p class="text-gray-600 text-xs">OCR 2026</p>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <address class="text-center md:text-right not-italic">
+        <p class="text-gray-500 text-sm">
+          Caleta de Fuste, Antigua, Fuerteventura
+        </p>
+        <p class="text-gray-700 text-xs mt-1">
+          © {currentYear} OCR Danger Extreme. Todos los derechos reservados.
+        </p>
+      </address>
+    </div>
+
+    <!-- Línea final -->
+    <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+      <p class="text-gray-800 text-xs uppercase tracking-[0.3em]">
+        Prepárate para sufrir • Prepárate para ganar
+      </p>
+      <p class="text-gray-700 text-xs mt-4">
+        Desarrollado por <a href="https://nakytec.com" target="_blank" rel="noopener noreferrer" class="text-danger-yellow hover:text-danger-red transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-danger-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded">Nakytec</a>
+      </p>
+    </div>
+  </div>
+</footer>
