@@ -1,0 +1,148 @@
+---
+// Fecha del evento: 1 de Agosto 2026, 09:00 (hora local Canarias)
+const eventDate = "2026-08-01T09:00:00+01:00";
+---
+
+<section class="py-16 px-4 relative overflow-hidden bg-gradient-to-b from-danger-black to-black" aria-labelledby="countdown-title">
+  <!-- Líneas decorativas -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-danger-yellow/30 to-transparent" aria-hidden="true"></div>
+  
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <!-- Título -->
+    <h2 id="countdown-title" class="font-black text-2xl md:text-3xl mb-2">
+      <span class="text-danger-yellow">CUENTA</span>
+      <span class="text-white"> ATRÁS</span>
+    </h2>
+    <p class="text-gray-500 text-sm uppercase tracking-widest mb-8">Hasta el día D</p>
+
+    <!-- Countdown Display -->
+    <div 
+      id="countdown" 
+      class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+      data-event-date={eventDate}
+      role="timer"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <!-- Días -->
+      <div class="countdown-item group">
+        <div class="relative bg-black/50 border border-gray-800 rounded-lg p-4 md:p-6 transition-all duration-300 hover:border-danger-yellow/50 hover:shadow-[0_0_30px_rgba(212,160,23,0.2)]">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-danger-black px-2">
+            <span class="text-[10px] md:text-xs text-gray-600 uppercase tracking-widest">Días</span>
+          </div>
+          <span id="days" class="block text-4xl md:text-6xl font-black text-danger-yellow tabular-nums">--</span>
+        </div>
+      </div>
+
+      <!-- Horas -->
+      <div class="countdown-item group">
+        <div class="relative bg-black/50 border border-gray-800 rounded-lg p-4 md:p-6 transition-all duration-300 hover:border-danger-red/50 hover:shadow-[0_0_30px_rgba(229,57,53,0.2)]">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-danger-black px-2">
+            <span class="text-[10px] md:text-xs text-gray-600 uppercase tracking-widest">Horas</span>
+          </div>
+          <span id="hours" class="block text-4xl md:text-6xl font-black text-danger-red tabular-nums">--</span>
+        </div>
+      </div>
+
+      <!-- Minutos -->
+      <div class="countdown-item group">
+        <div class="relative bg-black/50 border border-gray-800 rounded-lg p-4 md:p-6 transition-all duration-300 hover:border-danger-yellow/50 hover:shadow-[0_0_30px_rgba(212,160,23,0.2)]">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-danger-black px-2">
+            <span class="text-[10px] md:text-xs text-gray-600 uppercase tracking-widest">Minutos</span>
+          </div>
+          <span id="minutes" class="block text-4xl md:text-6xl font-black text-danger-yellow tabular-nums">--</span>
+        </div>
+      </div>
+
+      <!-- Segundos -->
+      <div class="countdown-item group">
+        <div class="relative bg-black/50 border border-gray-800 rounded-lg p-4 md:p-6 transition-all duration-300 hover:border-danger-red/50 hover:shadow-[0_0_30px_rgba(229,57,53,0.2)]">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-danger-black px-2">
+            <span class="text-[10px] md:text-xs text-gray-600 uppercase tracking-widest">Segundos</span>
+          </div>
+          <span id="seconds" class="block text-4xl md:text-6xl font-black text-danger-red tabular-nums animate-pulse-subtle">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje motivacional -->
+    <p class="text-gray-600 text-sm mt-8 uppercase tracking-wider">
+      ¿Estás <span class="text-danger-red font-bold">preparado</span>?
+    </p>
+  </div>
+</section>
+
+<script>
+  function initCountdown() {
+    const countdownEl = document.getElementById('countdown');
+    if (!countdownEl) return;
+
+    const eventDate = new Date(countdownEl.dataset.eventDate || '2026-08-01T09:00:00+01:00');
+    
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = eventDate.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        // El evento ha comenzado
+        if (daysEl) daysEl.textContent = '00';
+        if (hoursEl) hoursEl.textContent = '00';
+        if (minutesEl) minutesEl.textContent = '00';
+        if (secondsEl) secondsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+      if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+      if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+      if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+    }
+
+    // Actualizar inmediatamente
+    updateCountdown();
+    
+    // Actualizar cada segundo
+    setInterval(updateCountdown, 1000);
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCountdown);
+  } else {
+    initCountdown();
+  }
+</script>
+
+<style>
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Efecto de flip sutil cuando cambian los números */
+  .countdown-item span {
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Responsive ajustes */
+  @media (max-width: 640px) {
+    .countdown-item:nth-child(3),
+    .countdown-item:nth-child(4) {
+      margin-top: 0.5rem;
+    }
+  }
+</style>
