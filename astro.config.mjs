@@ -6,6 +6,7 @@ export default defineConfig({
   site: 'https://dangerextreme.es',
   integrations: [
     sitemap({
+      filter: (page) => !page.includes('/404'),
       changefreq: 'weekly',
       priority: 1.0,
       lastmod: new Date(),

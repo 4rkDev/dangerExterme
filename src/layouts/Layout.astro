@@ -30,8 +30,14 @@ const eventSchema = {
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Caleta de Fuste",
-      "addressRegion": "Antigua",
+      "addressRegion": "Fuerteventura",
+      "postalCode": "35610",
       "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 28.3997,
+      "longitude": -13.8597
     }
   },
   "organizer": {
@@ -42,10 +48,26 @@ const eventSchema = {
   "offers": {
     "@type": "Offer",
     "url": "https://sportmaniacs.com",
-    "availability": "https://schema.org/InStock"
+    "availability": "https://schema.org/PreOrder",
+    "validFrom": "2026-03-01"
   },
   "sport": "Obstacle Course Racing",
   "image": ogImage.toString()
+};
+
+// Organization Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "OCR Danger Extreme",
+  "url": Astro.site,
+  "logo": new URL('/logo.webp', Astro.site).toString(),
+  "sameAs": [],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "availableLanguage": ["Spanish", "English"]
+  }
 };
 ---
 
@@ -62,7 +84,14 @@ const eventSchema = {
     <meta name="keywords" content="OCR, Danger Extreme, carrera obstáculos, Caleta de Fuste, Antigua, Fuerteventura, Canarias, running, extreme, obstacle course racing, 2026" />
     <meta name="author" content="OCR Danger Extreme" />
     <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="ES-CN" />
+    <meta name="geo.placename" content="Caleta de Fuste, Fuerteventura" />
+    <meta name="geo.position" content="28.3997;-13.8597" />
+    <meta name="ICBM" content="28.3997, -13.8597" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="/logo.webp" />
@@ -76,9 +105,12 @@ const eventSchema = {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={new URL('/og-image.webp', Astro.site)} />
+    <meta property="og:image:secure_url" content={new URL('/og-image.webp', Astro.site)} />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="OCR Danger Extreme - Carrera de obstáculos extrema en Fuerteventura" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="OCR Danger Extreme" />
 
@@ -87,7 +119,8 @@ const eventSchema = {
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={new URL('/og-image.webp', Astro.site)} />
+    <meta name="twitter:image:alt" content="OCR Danger Extreme - Carrera de obstáculos extrema en Fuerteventura" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#E53935" />
@@ -106,6 +139,7 @@ const eventSchema = {
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
   </head>
   <body class="min-h-screen bg-danger-black text-white antialiased">
     <!-- Skip to main content link for accessibility -->
