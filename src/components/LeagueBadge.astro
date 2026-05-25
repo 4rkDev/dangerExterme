@@ -28,14 +28,15 @@
           Un día. Un podio. Un campeón.
         </span>
         <h2 class="font-black text-2xl md:text-4xl leading-tight mb-4">
+          <span class="text-danger-yellow">I </span>
           <span class="text-white">CAMPEONATO DE</span>
           <span class="text-danger-red"> CANARIAS </span>
           <span class="text-danger-yellow">OCR</span>
         </h2>
         <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-4">
-          Esto no clasifica. Esto no puntúa para nada.
           <span class="text-white font-black">Esto ES</span>
-          el Campeonato de Canarias OCR.
+          el I Campeonato de Canarias OCR.
+          Una única carrera para coronar al campeón regional.
           <span class="block mt-2 text-gray-400 text-sm md:text-base">
             Una pista. Los mejores del archipiélago. Cara a cara.
             El que cruza primero, manda durante un año.
@@ -45,11 +46,21 @@
           <p class="text-gray-500 text-xs uppercase tracking-[0.25em] font-bold mb-1">
             La guerra larga
           </p>
-          <p class="text-gray-400 text-sm leading-relaxed">
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
             Cada puesto suma puntos para la
             <span class="text-danger-yellow font-bold">Liga OCR Canaria</span>:
             carrera tras carrera, hasta saber quién aguanta de verdad.
           </p>
+          <a
+            href="https://ligaocrcanaria.es/clasificacion"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="league-link inline-flex items-center gap-2 text-danger-yellow hover:text-white text-xs uppercase tracking-[0.2em] font-bold border-b border-danger-yellow/40 hover:border-white pb-0.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-danger-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-sm"
+            aria-label="Ver clasificación de la Liga OCR Canaria (abre en nueva ventana)"
+          >
+            <span>Ver clasificación</span>
+            <span aria-hidden="true" class="league-link__arrow transition-transform">→</span>
+          </a>
         </div>
       </div>
     </div>
@@ -67,9 +78,16 @@
     50% { transform: translateY(-8px); }
   }
 
+  .league-link:hover .league-link__arrow {
+    transform: translateX(4px);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .league-logo-wrapper img {
       animation: none;
+    }
+    .league-link__arrow {
+      transition: none;
     }
   }
 </style>
