@@ -1,0 +1,75 @@
+---
+---
+
+<section
+  class="relative py-12 md:py-16 px-4 overflow-hidden bg-black"
+  aria-labelledby="league-title"
+>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-danger-yellow/40 to-transparent" aria-hidden="true"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-danger-red/40 to-transparent" aria-hidden="true"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 text-center md:text-left">
+      <div class="league-logo-wrapper shrink-0">
+        <img
+          src="/logo-campeonato-canarias.svg"
+          alt="Logo Campeonato de Canarias OCR"
+          width="220"
+          height="220"
+          loading="lazy"
+          decoding="async"
+          class="w-40 h-40 md:w-52 md:h-52 object-contain drop-shadow-[0_0_25px_rgba(212,160,23,0.35)]"
+        />
+      </div>
+
+      <div class="max-w-xl">
+        <span id="league-title" class="inline-flex items-center gap-2 text-danger-yellow text-xs md:text-sm uppercase tracking-[0.4em] font-bold mb-4">
+          <span class="w-2 h-2 rounded-full bg-danger-red animate-pulse" aria-hidden="true"></span>
+          Un día. Un podio. Un campeón.
+        </span>
+        <h2 class="font-black text-2xl md:text-4xl leading-tight mb-4">
+          <span class="text-white">CAMPEONATO DE</span>
+          <span class="text-danger-red"> CANARIAS </span>
+          <span class="text-danger-yellow">OCR</span>
+        </h2>
+        <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-4">
+          Esto no clasifica. Esto no puntúa para nada.
+          <span class="text-white font-black">Esto ES</span>
+          el Campeonato de Canarias OCR.
+          <span class="block mt-2 text-gray-400 text-sm md:text-base">
+            Una pista. Los mejores del archipiélago. Cara a cara.
+            El que cruza primero, manda durante un año.
+          </span>
+        </p>
+        <div class="border-l-2 border-danger-yellow/50 pl-4 py-1">
+          <p class="text-gray-500 text-xs uppercase tracking-[0.25em] font-bold mb-1">
+            La guerra larga
+          </p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Cada puesto suma puntos para la
+            <span class="text-danger-yellow font-bold">Liga OCR Canaria</span>:
+            carrera tras carrera, hasta saber quién aguanta de verdad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .league-logo-wrapper img {
+    animation: badge-float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes badge-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .league-logo-wrapper img {
+      animation: none;
+    }
+  }
+</style>

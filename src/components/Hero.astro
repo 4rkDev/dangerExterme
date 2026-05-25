@@ -66,28 +66,35 @@
     </div>
 
     <!-- Stats rápidos -->
-    <div class="flex justify-center gap-4 md:gap-6 mt-3 md:mt-4 animate-entrance" style="animation-delay: 0.6s; opacity: 0;" role="list" aria-label="Datos del evento">
-      <div class="text-center" role="listitem">
-        <span class="block text-2xl md:text-3xl font-black text-danger-yellow">6</span>
-        <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Kilómetros</span>
+    <div class="flex justify-center items-stretch gap-6 md:gap-10 mt-4 md:mt-6 animate-entrance" style="animation-delay: 0.6s; opacity: 0;" role="list" aria-label="Datos del evento">
+      <div class="hero-stat text-center" role="listitem">
+        <span class="block text-3xl md:text-4xl font-black text-danger-yellow tabular-nums leading-none">10<span class="text-gray-600 mx-0.5">/</span>7</span>
+        <span class="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-500 mt-1 block">Kilómetros</span>
       </div>
-      <div class="text-center border-x border-gray-700 px-6" role="listitem">
-        <span class="block text-2xl md:text-3xl font-black text-danger-red" aria-label="Múltiples">∞</span>
-        <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Obstáculos</span>
+      <div class="hero-stat hero-stat--divided text-center px-6 md:px-8" role="listitem">
+        <span class="block text-3xl md:text-4xl font-black text-danger-red leading-none" aria-label="Múltiples">∞</span>
+        <span class="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-500 mt-1 block">Obstáculos</span>
       </div>
-      <div class="text-center" role="listitem">
-        <span class="block text-2xl md:text-3xl font-black text-danger-yellow">1</span>
-        <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Oportunidad</span>
+      <div class="hero-stat text-center" role="listitem">
+        <span class="block text-3xl md:text-4xl font-black text-danger-yellow leading-none">5</span>
+        <span class="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-500 mt-1 block">Categorías</span>
       </div>
     </div>
 
     <!-- CTA Principal -->
     <div class="animate-entrance mt-4 md:mt-6 px-4" style="animation-delay: 0.7s; opacity: 0;">
-      <div class="inline-block bg-gray-900/80 border border-danger-yellow/50 rounded-lg px-5 py-3 text-center">
-        <p class="text-danger-yellow font-bold text-xs md:text-sm uppercase tracking-wider mb-0.5">Inscripciones</p>
-        <p class="text-white text-lg md:text-xl font-black">Marzo 2026</p>
-      </div>
-      <p class="hidden md:block text-gray-500 text-sm mt-2 uppercase tracking-wider">Prepárate...</p>
+      <a
+        href="https://tripasioneventos.com/event/danger-extreme/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 bg-danger-red hover:bg-danger-yellow text-white hover:text-black border-2 border-danger-yellow rounded-lg px-6 py-3 md:px-8 md:py-4 font-black uppercase tracking-wider text-base md:text-lg shadow-[0_0_25px_rgba(229,57,53,0.4)] hover:shadow-[0_0_35px_rgba(212,160,23,0.6)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-danger-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        aria-label="Inscríbete ya en OCR Danger Extreme a través de TriPasión Eventos (abre en nueva ventana)"
+      >
+        <span class="w-2.5 h-2.5 rounded-full bg-danger-yellow animate-pulse" aria-hidden="true"></span>
+        <span>Inscripciones abiertas</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <p class="hidden md:block text-gray-500 text-sm mt-2 uppercase tracking-wider">Plazas limitadas</p>
     </div>
   </div>
 
@@ -150,6 +157,22 @@
   .title-main {
     text-shadow: 0 0 40px rgba(0,0,0,0.8);
   }
+
+  /* Divisores verticales sutiles entre stats */
+  .hero-stat--divided {
+    position: relative;
+  }
+  .hero-stat--divided::before,
+  .hero-stat--divided::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 160, 23, 0.35), transparent);
+  }
+  .hero-stat--divided::before { left: 0; }
+  .hero-stat--divided::after { right: 0; }
 
   /* Warning tape - solo el fondo rayado */
   .warning-tape::before {

@@ -2,31 +2,45 @@
 const categories = [
   {
     name: 'ELITE',
-    distance: '6km',
+    distance: '10 km',
+    time: '09:00',
     description: 'Los más duros. Sin piedad. Sin excusas.',
     color: 'red',
     icon: '🏆'
   },
   {
     name: 'PRE-ELITE',
-    distance: '6km',
+    distance: '10 km',
+    time: '09:20',
     description: 'El primer paso hacia la gloria extrema.',
     color: 'yellow',
     icon: '🔥'
   },
   {
-    name: 'POPULAR INDIVIDUAL',
-    distance: '6km',
-    description: 'Tú contra el mundo. Demuestra de qué estás hecho.',
+    name: 'POPULAR INDIVIDUAL · PAREJAS',
+    distance: '7 km',
+    time: '10:00',
+    description: 'Tú contra el mundo —o codo con codo. Demuestra de qué estás hecho.',
     color: 'red',
     icon: '💪'
   },
   {
-    name: 'POPULAR PAREJAS',
-    distance: '6km',
-    description: 'Dos guerreros, un objetivo: sobrevivir juntos.',
+    name: 'EQUIPOS COMPETITIVO',
+    distance: '7 km',
+    time: '15:00',
+    description: '3 personas. Una estrategia. Cero excusas.',
+    teamSize: '3 personas',
     color: 'yellow',
     icon: '🤝'
+  },
+  {
+    name: 'EQUIPOS POPULAR',
+    distance: '7 km',
+    time: '15:00',
+    description: '3 personas. Pasarlo bien sufriendo juntos.',
+    teamSize: '3 personas',
+    color: 'red',
+    icon: '👥'
   }
 ];
 
@@ -47,7 +61,7 @@ const categories = [
         <span class="text-white"> TU </span>
         <span class="text-danger-red">BATALLA</span>
       </h2>
-      <p class="text-gray-500 mt-4 uppercase tracking-widest text-sm">4 Categorías • 1 Destino: La línea de meta</p>
+      <p class="text-gray-500 mt-4 uppercase tracking-widest text-sm">5 Categorías • 1 Destino: La línea de meta</p>
     </header>
 
     <!-- Lista de categorías -->
@@ -70,22 +84,28 @@ const categories = [
             </span>
 
             <!-- Info -->
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-1">
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
                 <h3 class={`text-xl md:text-2xl font-black ${category.color === 'red' ? 'text-danger-red' : 'text-danger-yellow'} group-hover:tracking-wider transition-all`}>
                   {category.name}
                 </h3>
-                <span class="text-xs px-2 py-1 bg-white/10 rounded text-gray-400 font-bold">
+                <span class="text-xs px-2 py-1 bg-white/10 rounded text-gray-300 font-bold">
                   {category.distance}
+                </span>
+                {category.teamSize && (
+                  <span class="text-xs px-2 py-1 bg-white/5 rounded text-gray-400 font-bold">
+                    {category.teamSize}
+                  </span>
+                )}
+                <span class="inline-flex items-center gap-1 text-xs text-gray-400 font-mono tabular-nums">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <time datetime={`2026-08-01T${category.time}:00+01:00`}>{category.time}</time>
                 </span>
               </div>
               <p class="text-gray-400 text-sm md:text-base">{category.description}</p>
             </div>
-
-            <!-- Flecha -->
-            <svg class="w-6 h-6 text-gray-600 group-hover:text-white group-hover:translate-x-2 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
           </article>
         </li>
       ))}
@@ -94,18 +114,21 @@ const categories = [
     <!-- CTA Final -->
     <div class="text-center mt-20">
       <div class="inline-block">
-        <p class="text-gray-400 mb-6 text-xl">
-          ¿Tienes lo que se necesita para ser un
-          <span class="text-danger-red font-black">SURVIVOR</span>?
+        <p class="text-white font-black text-2xl md:text-3xl tracking-tight mb-3 leading-tight">
+          Aquí no se gana.
+          <span class="text-danger-red"> Se </span>
+          <span class="glitch-text inline-block text-danger-yellow" data-text="SOBREVIVE">SOBREVIVE</span>.
+        </p>
+        <p class="text-gray-400 mb-8 text-base md:text-lg uppercase tracking-[0.2em]">
+          ¿Vas a correrla… o a contarla?
         </p>
 
-<!-- BOTÓN DE INSCRIPCIÓN (deshabilitado temporalmente)
-        <a
-          href="https://sportmaniacs.com"
+<a
+          href="https://tripasioneventos.com/event/danger-extreme/"
           target="_blank"
           rel="noopener noreferrer"
           class="btn-danger inline-block text-2xl px-16 py-6 relative overflow-hidden group"
-          aria-label="Inscríbete ya en OCR Danger Extreme (abre en nueva ventana)"
+          aria-label="Inscríbete ya en OCR Danger Extreme a través de TriPasión Eventos (abre en nueva ventana)"
         >
           <span class="relative z-10 flex items-center gap-4">
             <span>INSCRÍBETE YA</span>
@@ -116,7 +139,10 @@ const categories = [
         <p class="text-gray-700 text-xs mt-6 uppercase tracking-widest">
           Plazas limitadas • No hay vuelta atrás
         </p>
--->
+        <p class="text-gray-600 text-xs mt-2 uppercase tracking-wider">
+          Inscripciones gestionadas por
+          <a href="https://tripasioneventos.com/event/danger-extreme/" target="_blank" rel="noopener noreferrer" class="text-danger-yellow hover:text-danger-red transition-colors">TriPasión Eventos</a>
+        </p>
       </div>
     </div>
   </div>
